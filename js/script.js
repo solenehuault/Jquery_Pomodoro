@@ -8,26 +8,28 @@ var seconde = 6;
 var minute = 0;
 var timer;
 var nbr_pause = 0;
+var having_a_break = false;
 
 //function chrono
 function chrono() {
 	timer = setInterval(function() {
 		console.log("chrono: " + minute, seconde);
-		if (seconde == 0 && minute == 0) {
-			startbreak();
-		}
 		if (seconde == 0) {
 			seconde = 59;
 			minute--;
 			$(".time").text(minute + ":" + seconde);
 		}
 		if (seconde < 10) {
-			$(".time").text(minute + ":0" + seconde);
 			seconde--;
+			$(".time").text(minute + ":0" + seconde);
 		}
 		else {
-			$(".time").text(minute + ":" + seconde);
 			seconde--;
+			$(".time").text(minute + ":" + seconde);
+		}
+		if (seconde == 0 && minute == 0 && !having_a_break) {
+			having_a_break = true;
+			startbreak();
 		}
 	}, 1000);
 	
@@ -62,8 +64,18 @@ function chrono_stop(timer) {
 
 //function task/break
 function startbreak() {
-	seconde = 0;
-	minute = 5;
+	
+	if (nbr_pause == 3) {minute = 20;}
+	else if (having_a_break){
+		minute = 0;
+		seconde = 4;
+		nbr_pause++;
+		having_a_break = false;
+	}
+	else {
+		minute = 0;
+		seconde = 6;
+	}
 };
 
 function taskdone() {
