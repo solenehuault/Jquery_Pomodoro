@@ -21,13 +21,13 @@
         </form>
         <div id="controls">
             <p class="time">0:00</p>
-            <button type="button" id="play" class="btn btn-default btn-lg" onclick="chrono(time_is_running, seconde, minute)">
+            <button type="button" id="play" class="btn btn-default btn-lg" onclick="chrono(seconde, minute)">
                 <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
             </button>
-            <button type="button" id="pause" class="btn btn-default btn-lg">
+            <button type="button" id="pause" class="btn btn-default btn-lg" onclick="chrono_pause (seconde, minute, timer)">
                 <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
             </button>
-            <button type="button" id="stop" class="btn btn-default btn-lg">
+            <button type="button" id="stop" class="btn btn-default btn-lg" onclick="chrono_stop(timer)">
                 <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
             </button>
         </div>

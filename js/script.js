@@ -6,18 +6,13 @@
 
 var seconde = 1;
 var minute = 0;
-var time_is_running = false;
+var timer;
 
-function taskdone() {
-	if ($("#task").val() != "") {
-		$("#done").prepend("<li class='list-group-item'><s>" + $("#task").val() + "</s></li>");
-		$("#task").val("")
-	}
-};
 
-function chrono(time_is_running, seconde, minute) {
-	$("#play").attr("disabled", true);
-	var timer = setInterval(function() {
+//function chrono
+function chrono(seconde, minute) {
+	timer = setInterval(function() {
+	console.log(seconde, minute);
 		if (seconde == 59) {
 			seconde = 0;
 			minute++;
@@ -32,12 +27,40 @@ function chrono(time_is_running, seconde, minute) {
 			seconde++;
 		}
 	}, 1000);
-};
-
-function startbreak() {
 	
+	$("#play").attr("disabled", true);
+	$("#pause").attr("disabled", false);
+	$("#stop").attr("disabled", false);
 };
 
 function chrono_pause (seconde, minute, timer) {
 	clearInterval(timer);
+	$("#play").attr("disabled", false);
+	$("#pause").attr("disabled", true);
+	$("#stop").attr("disabled", false);
+};
+
+function chrono_stop(timer) {
+	clearInterval(timer);
+	seconde = 1;
+	minute = 0;
+	$(".time").text("0:00");
+	$("#play").attr("disabled", false);
+	$("#pause").attr("disabled", false);
+	$("#stop").attr("disabled", true);
+	
+};
+
+
+
+//function task/break
+function startbreak() {
+	
+};
+
+function taskdone() {
+	if ($("#task").val() != "") {
+		$("#done").prepend("<li class='list-group-item'><s>" + $("#task").val() + "</s></li>");
+		$("#task").val("")
+	}
 };
