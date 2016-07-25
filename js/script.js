@@ -4,37 +4,41 @@
  * * * * * * * * * * * * * * *
  * * * * * * * * * * * * * * */
 
-var seconde = 1;
-var minute = 0;
+var seconde = 0;
+var minute = 25;
 var timer;
 
 
 //function chrono
-function chrono(seconde, minute) {
+function chrono() {
 	timer = setInterval(function() {
-	console.log(seconde, minute);
-		if (seconde == 59) {
-			seconde = 0;
-			minute++;
+		console.log("chrono: " + minute, seconde);
+		$(".time").text(minute + ":" + seconde);
+		if (seconde == 0) {
+			seconde = 59;
+			minute--;
 			$(".time").text(minute + ":" + seconde);
 		}
 		if (seconde < 10) {
 			$(".time").text(minute + ":0" + seconde);
-			seconde++;
+			seconde--;
 		}
 		else {
 			$(".time").text(minute + ":" + seconde);
-			seconde++;
+			seconde--;
 		}
 	}, 1000);
 	
 	$("#play").attr("disabled", true);
 	$("#pause").attr("disabled", false);
 	$("#stop").attr("disabled", false);
+	console.log("chrono-sortie: " + minute, seconde);
 };
 
-function chrono_pause (seconde, minute, timer) {
+function chrono_pause (timer) {
+console.log("avt pause:" + minute, seconde);
 	clearInterval(timer);
+	console.log("pause:" + minute, seconde);
 	$("#play").attr("disabled", false);
 	$("#pause").attr("disabled", true);
 	$("#stop").attr("disabled", false);
@@ -44,6 +48,7 @@ function chrono_stop(timer) {
 	clearInterval(timer);
 	seconde = 1;
 	minute = 0;
+	console.log("stop:" + minute, seconde);
 	$(".time").text("0:00");
 	$("#play").attr("disabled", false);
 	$("#pause").attr("disabled", false);
@@ -55,7 +60,7 @@ function chrono_stop(timer) {
 
 //function task/break
 function startbreak() {
-	
+	chrono(5, 0);
 };
 
 function taskdone() {
