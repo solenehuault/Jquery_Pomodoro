@@ -4,16 +4,18 @@
  * * * * * * * * * * * * * * *
  * * * * * * * * * * * * * * */
 
-var seconde = 0;
-var minute = 25;
+var seconde = 6;
+var minute = 0;
 var timer;
-
+var nbr_pause = 0;
 
 //function chrono
 function chrono() {
 	timer = setInterval(function() {
 		console.log("chrono: " + minute, seconde);
-		$(".time").text(minute + ":" + seconde);
+		if (seconde == 0 && minute == 0) {
+			startbreak();
+		}
 		if (seconde == 0) {
 			seconde = 59;
 			minute--;
@@ -46,8 +48,8 @@ console.log("avt pause:" + minute, seconde);
 
 function chrono_stop(timer) {
 	clearInterval(timer);
-	seconde = 1;
-	minute = 0;
+	seconde = 0;
+	minute = 25;
 	console.log("stop:" + minute, seconde);
 	$(".time").text("0:00");
 	$("#play").attr("disabled", false);
@@ -60,7 +62,8 @@ function chrono_stop(timer) {
 
 //function task/break
 function startbreak() {
-	chrono(5, 0);
+	seconde = 0;
+	minute = 5;
 };
 
 function taskdone() {
