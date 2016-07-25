@@ -16,12 +16,12 @@
             <div class="form-group">
                 <label for="task"></label>
                 <input type="text" id="task" class="form-control">
-		<button type="button" id="ongoing_done" class="btn btn-default">Done</button>
+		<button type="button" id="ongoing_done" class="btn btn-default" onclick="taskdone()">Done</button>
             </div>
         </form>
         <div id="controls">
             <p class="time">0:00</p>
-            <button type="button" id="play" class="btn btn-default btn-lg">
+            <button type="button" id="play" class="btn btn-default btn-lg" onclick="chrono(time_is_running, seconde, minute)">
                 <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
             </button>
             <button type="button" id="pause" class="btn btn-default btn-lg">
@@ -33,9 +33,6 @@
         </div>
         <h2>Done</h2>
         <ul id="done" class="list-group">
-            <li class="list-group-item"><s>exemple</s></li>
-            <li class="list-group-item"><s>exemple</s></li>
-            <li class="list-group-item"><s>exemple</s></li>
         </ul>
     </div>
     <script src="js/jquery-2.2.2.min.js"></script>
