@@ -1,5 +1,5 @@
-var seconde = 6;
-var minute = 0;
+var seconde = 0;
+var minute = 20;
 var timer; //storage of setInterval
 var nbr_pause = 0;
 var having_a_break = true;
