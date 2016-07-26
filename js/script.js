@@ -6,6 +6,9 @@ var having_a_break = true;
 
 function chrono() {
 	timer = setInterval(function () {
+		var temps = seconde < 10 ? minute + ":0" + seconde : minute + ":" + seconde;
+		$(".time").text(temps);
+		
 		if (seconde == 0) {
 			seconde = 59;
 			minute--;
@@ -13,8 +16,6 @@ function chrono() {
 		else {
 			seconde--;
 		}
-		var temps = seconde < 10 ? minute + ":0" + seconde : minute + ":" + seconde;
-		$(".time").text(temps);
 		if (seconde == 0 && minute == 0) {
 			startbreak();
 		}
@@ -46,13 +47,16 @@ function startbreak() {
 		if (nbr_pause == 3) {
 			minute = 0;
 			seconde = 20;
+			nbr_pause = 0;
 			having_a_break = false;
 		}
-		minute = 0;
+		else {
+			minute = 0;
 		seconde = 5;
 		nbr_pause++;
 		console.log("nbr_pause: " + nbr_pause);
 		having_a_break = false;
+		}
 	}
 	else {
 		minute = 0;
