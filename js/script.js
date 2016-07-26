@@ -1,8 +1,16 @@
 var seconde = 0;
-var minute = 20;
+var minute = 25;
 var timer; //storage of setInterval
 var nbr_pause = 0;
 var having_a_break = true;
+
+//press Enter on input to begin
+function start (event) { //event here: take the event (here keypress) and make it into an object
+	if ($("#task").val() != "" && event.key == "Enter") {
+		$("#task").attr("disabled", true);
+		event.preventDefault(); //prevent the page reload
+	}
+};
 
 //button play : timer
 function chrono() {
@@ -75,5 +83,6 @@ function taskdone() {
 	if ($("#task").val() != "") {
 		$("#done").prepend("<li class='list-group-item'><s>" + $("#task").val() + "</s></li>");
 		$("#task").val("")
+		$("#task").attr("disabled", false);
 	}
 };
